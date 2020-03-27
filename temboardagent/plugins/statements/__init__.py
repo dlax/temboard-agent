@@ -15,10 +15,32 @@ query = """\
 SELECT
   rolname,
   datname,
-  pg_stat_statements.*
-FROM pg_stat_statements
-JOIN pg_authid ON pg_stat_statements.userid = pg_authid.oid
-JOIN pg_database ON pg_stat_statements.dbid = pg_database.oid
+  pgss.blk_read_time,
+  pgss.blk_write_time,
+  pgss.calls,
+  pgss.dbid,
+  pgss.local_blks_dirtied,
+  pgss.local_blks_hit,
+  pgss.local_blks_read,
+  pgss.local_blks_written,
+  pgss.max_time,
+  pgss.mean_time,
+  pgss.min_time,
+  pgss.query,
+  pgss.queryid,
+  pgss.rows,
+  pgss.shared_blks_dirtied,
+  pgss.shared_blks_hit,
+  pgss.shared_blks_read,
+  pgss.shared_blks_written,
+  pgss.stddev_time,
+  pgss.temp_blks_read,
+  pgss.temp_blks_written,
+  pgss.total_time,
+  pgss.userid
+FROM pg_stat_statements pgss
+JOIN pg_authid ON pgss.userid = pg_authid.oid
+JOIN pg_database ON pgss.dbid = pg_database.oid
 """
 
 
